@@ -12,7 +12,7 @@
     "metrics": "node tools/dev-metrics.js"
   },
   "devDependencies": {
-    "@abaplint/cli": "2.119.24"
+    "@abaplint/cli": "2.120.92"
   },
   "keywords": [
     "abap",

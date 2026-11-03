@@ -4,6 +4,7 @@ class zcl_au_fiori_gen definition
   create public.
 
   public section.
+    class-methods class_constructor.
     "! One field of the entity that becomes a Fiori app.
     types:
       begin of ty_field,
@@ -99,7 +100,6 @@ class zcl_au_fiori_gen definition
     " and initialised once in the class constructor.
     class-data c_lf type abap_char1.
 
-    class-methods class_constructor.
 
     class-methods join_lines
       importing

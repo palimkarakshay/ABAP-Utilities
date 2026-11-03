@@ -98,8 +98,9 @@ class zcl_au_dataset implementation.
     endif.
 
     data lv_chunk type xstring.
+    data lv_len   type i.
     do.
-      read dataset iv_path into lv_chunk maximum length 8192 actual length data(lv_len).
+      read dataset iv_path into lv_chunk maximum length 8192 actual length lv_len.
       if lv_len > 0.
         concatenate rv_data lv_chunk(lv_len) into rv_data in byte mode.
       endif.

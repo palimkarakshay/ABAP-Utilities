@@ -48,7 +48,7 @@ class zcl_au_docgen implementation.
       append for_class( lv_name ) to lt_parts.
     endloop.
     rv_markdown = concat_lines_of( table = lt_parts
-                                   sep   = repeat( val = cl_abap_char_utilities=>newline times = 2 ) ).
+                                   sep   = repeat( val = cl_abap_char_utilities=>newline occ = 2 ) ).
   endmethod.
 
 

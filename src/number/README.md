@@ -14,7 +14,7 @@ Copy `src/number/zcl_au_number.clas.abap` (+ `.clas.xml`, optionally
 ## How to use
 
 ```abap
-zcl_au_number=>round( iv_value = '2.345' iv_decimals = 2 ).            "2.35
+zcl_au_number=>round_to( iv_value = '2.345' iv_decimals = 2 ).            "2.35
 zcl_au_number=>clamp( iv_value = '42' iv_min = '0' iv_max = '10' ).    "10
 zcl_au_number=>in_range( iv_value = '5' iv_min = '1' iv_max = '10' ).  "abap_true
 zcl_au_number=>percentage( iv_part = '1' iv_whole = '4' ).             "25.00
