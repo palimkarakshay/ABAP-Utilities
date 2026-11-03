@@ -38,7 +38,7 @@ class ltcl_date implementation.
       exp = conv d( '20260201' )
       act = zcl_au_date=>first_day_of_month( '20260215' ) ).
     cl_abap_unit_assert=>assert_equals(
-      exp = conv d( '20260229' )
+      exp = conv d( '20260228' )
       act = zcl_au_date=>last_day_of_month( '20260210' ) ).
   endmethod.
 

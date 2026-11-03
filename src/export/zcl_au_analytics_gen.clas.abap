@@ -4,6 +4,7 @@ class zcl_au_analytics_gen definition
   create public.
 
   public section.
+    class-methods class_constructor.
     "! One field of the exported entity. Mark measures (numeric values to be
     "! aggregated) with is_measure; everything else is a dimension/key.
     types:
@@ -65,7 +66,6 @@ class zcl_au_analytics_gen definition
 
   private section.
     class-data c_lf type abap_char1.
-    class-methods class_constructor.
 
     "! Render the field lines of a SELECT list (key prefix + optional per-field
     "! annotation passed by the caller is added separately).

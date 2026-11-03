@@ -5,17 +5,23 @@
     "skipGeneratedPersistentClasses": true,
     "skipGeneratedFunctionGroups": true
   },
-  "dependencies": [],
+  "dependencies": [
+    {
+      "url": "https://github.com/open-abap/open-abap-core",
+      "folder": "/deps",
+      "files": "/src/**/*.*"
+    }
+  ],
   "syntax": {
-    "version": "v755",
+    "version": "v758",
     "errorNamespace": "^(Z|Y|LCL_|TY_|LIF_)",
     "globalConstants": [],
     "globalMacros": []
   },
   "rules": {
     "parser_error": true,
-    "unknown_types": false,
-    "check_syntax": false,
+    "unknown_types": true,
+    "check_syntax": true,
     "7bit_ascii": true,
     "avoid_use": {
       "define": true,

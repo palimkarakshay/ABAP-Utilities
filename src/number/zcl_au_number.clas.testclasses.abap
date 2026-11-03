@@ -16,7 +16,7 @@ class ltcl_number implementation.
   method rounding.
     cl_abap_unit_assert=>assert_equals(
       exp = conv decfloat34( '2.35' )
-      act = zcl_au_number=>round( iv_value = '2.345' iv_decimals = 2 ) ).
+      act = zcl_au_number=>round_to( iv_value = '2.345' iv_decimals = 2 ) ).
   endmethod.
 
   method clamping.

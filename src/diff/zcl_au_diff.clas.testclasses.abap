@@ -24,17 +24,17 @@ class ltcl_diff implementation.
       it_a = value #( ( `line1` ) ( `line2` )         ( `line3` ) )
       it_b = value #( ( `line1` ) ( `line2 changed` ) ( `line3` ) ) ).
     " line1 + line3 unchanged; line2 replaced -> one '-' and one '+'
-    cl_abap_unit_assert=>assert_equals( exp = 2 act = count( it_diff = lt iv_kind = ` ` ) ).
-    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = `-` ) ).
-    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = `+` ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 2 act = count( it_diff = lt iv_kind = ' ' ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = '-' ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = '+' ) ).
   endmethod.
 
   method pure_insert.
     data(lt) = zcl_au_diff=>tables( it_a = value #( ( `x` ) )
                                     it_b = value #( ( `x` ) ( `y` ) ) ).
-    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = ` ` ) ).
-    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = `+` ) ).
-    cl_abap_unit_assert=>assert_equals( exp = 0 act = count( it_diff = lt iv_kind = `-` ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = ' ' ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 1 act = count( it_diff = lt iv_kind = '+' ) ).
+    cl_abap_unit_assert=>assert_equals( exp = 0 act = count( it_diff = lt iv_kind = '-' ) ).
   endmethod.
 
   method equality.
