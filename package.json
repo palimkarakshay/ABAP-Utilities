@@ -9,10 +9,15 @@
     "docs": "node tools/gen-api-docs.js",
     "index": "node tools/gen-mcp-index.js",
     "changelog": "node tools/dev-metrics.js --changelog docs/CHANGELOG.md",
-    "metrics": "node tools/dev-metrics.js"
+    "metrics": "node tools/dev-metrics.js",
+    "test:transpile": "abap_transpile abap_transpile.json",
+    "test": "npm run test:transpile && node output/index.mjs",
+    "readiness": "node tools/readiness-gate.mjs"
   },
   "devDependencies": {
-    "@abaplint/cli": "2.120.92"
+    "@abaplint/cli": "2.120.92",
+    "@abaplint/transpiler-cli": "2.14.15",
+    "@abaplint/runtime": "2.14.15"
   },
   "keywords": [
     "abap",

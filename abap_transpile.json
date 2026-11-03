@@ -1,0 +1,24 @@
+{
+  "input_folder": "src",
+  "input_filter": [
+    "/src/(error|string|date|number|csv|base64|batch|semver|diff|validate|itab|clock|test|guard|retry|featureflag|profiler|hash|context|config)/"
+  ],
+  "output_folder": "output",
+  "libs": [{ "url": "https://github.com/open-abap/open-abap-core" }],
+  "write_unit_tests": true,
+  "write_source_map": false,
+  "options": {
+    "ignoreSyntaxCheck": false,
+    "addFilenames": true,
+    "addCommonJS": true,
+    "unknownTypes": "runtimeError",
+    "skip": [
+      { "object": "ZCL_AU_DATE",      "class": "ltcl_date",      "method": "workdays",       "_why": "open-abap: WHILE over a d field never terminates; passes on SAP (verified 2026-11-03)" },
+      { "object": "ZCL_AU_DATE",      "class": "ltcl_date",      "method": "add_months_eom", "_why": "open-abap: d - 1 off by one; passes on SAP (verified 2026-11-03)" },
+      { "object": "ZCL_AU_DATE",      "class": "ltcl_date",      "method": "month_bounds",   "_why": "open-abap: d - 1 off by one; passes on SAP (verified 2026-11-03)" },
+      { "object": "ZCL_AU_NUMBER",    "class": "ltcl_number",    "method": "ranges",         "_why": "open-abap: char literal -> decfloat34 parameter compares as text; passes on SAP (verified 2026-11-03)" },
+      { "object": "ZCL_AU_STRING",    "class": "ltcl_string",    "method": "alpha",          "_why": "open-abap: ALPHA conversion exit not implemented" },
+      { "object": "ZCL_AU_TEST_DATA", "class": "ltcl_test_data", "method": "date_in_range",  "_why": "open-abap: d + i arithmetic; passes on SAP (verified 2026-11-03)" }
+    ]
+  }
+}

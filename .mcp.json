@@ -3,6 +3,13 @@
     "sap-docs": {
       "type": "http",
       "url": "http://localhost:3122/mcp"
+    },
+    "abap-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "abap-mcp@0.12.7"
+      ]
     }
   }
 }

@@ -18,8 +18,9 @@ Every utility is:
   to take the whole repository. See [Install](#install).
 - **Documented** – each module folder has its own `README.md` with a how-to and
   copy-paste examples.
-- **Tested** – core utilities ship with ABAP Unit tests, and the whole tree is
-  verified with [abaplint](https://abaplint.org) in CI.
+- **Tested** – core utilities ship with ABAP Unit tests that run in CI **without an SAP system**
+  (abaplint transpiler + open-abap), the whole tree passes a real abaplint syntax check, and a
+  Clean Core readiness gate keeps the cloud-blocker count from growing. See [Verify / build](#verify--build).
 
 ---
 
@@ -147,24 +148,25 @@ references to their own names.
 
 ## Verify / build
 
-The whole source tree is linted with abaplint:
+Three gates run locally and in GitHub Actions on every push and PR:
 
 ```bash
-npm install      # installs @abaplint/cli
-npm run lint     # abaplint, configured by abaplint.json
+npm install          # pinned abaplint, transpiler and runtime
+npm run lint         # abaplint with a REAL syntax check (open-abap-core supplies the standard library)
+npm test             # ABAP Unit without an SAP system: pure modules transpiled and run on open-abap
+npm run readiness    # ABAP Cloud / Clean Core blockers via abap-mcp; fails if they grow past the baseline
 ```
 
-ABAP Unit tests live next to each class (`*.clas.testclasses.abap`). Run them in
-ADT (*Run As ➜ ABAP Unit Test*) or via `abapGit` ➜ the system's unit runner once
-the objects are activated in a real system.
+| Gate | What it proves | What it cannot prove |
+|------|----------------|----------------------|
+| `npm run lint` | every object parses and *would activate* (unknown types, wrong parameters, misplaced constructors are errors) | behaviour |
+| `npm test` | the ABAP Unit tests of the pure modules listed in `abap_transpile.json` pass on the open-abap kernel | anything touching DB, RAP/EML, BAL, BCS, RTTS-heavy or GUI APIs — those modules stay **SAP-only** |
+| `npm run readiness` | no new ABAP Cloud blockers or non-released API uses ([generated matrix](docs/clean-core-readiness.generated.md)) | release state on *your* system — ATC `CLOUD_READINESS` is final |
 
-> **Note on verification scope:** abaplint statically parses and style-checks the
-> code without an SAP backend, so it cannot resolve the standard SAP class
-> library or execute ABAP Unit. Activation and the unit tests must be run on a
-> real ABAP system. Every utility was written against released/standard APIs and
-> documents its dependencies.
-
----
+A handful of tests are skipped on open-abap with a documented reason in `abap_transpile.json` (date arithmetic,
+`ALPHA` conversion); each of those was verified green on a real ABAP system (BTP ABAP Environment, 2026-11-03).
+ABAP Unit for every module, including the SAP-only ones, still runs in ADT (*Run As ➜ ABAP Unit Test*) or via
+abapGit once the objects are activated.
 
 ## Cookbooks & guides (`docs/`)
 
